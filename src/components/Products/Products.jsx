@@ -2,14 +2,14 @@ import React from 'react';
 import './Products.css';
 import { useState, useEffect } from 'react';
 import { fetchProducts } from '../../api/fetchProducts';
+import { ProductCard } from '../ProductCard/ProductCard';
 
 export function Products() {
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-
-        fetchProducts('camisas')
+        fetchProducts('camisinha')
             .then((response) => {
                 setProducts(response);
             });
@@ -20,9 +20,8 @@ export function Products() {
     return (
         <section className="products container">
 
-        
+            <ProductCard />
 
-           
         </section>
     );
 }
