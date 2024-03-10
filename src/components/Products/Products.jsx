@@ -9,7 +9,7 @@ export function Products() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetchProducts('camisinha')
+        fetchProducts('CR7')
             .then((response) => {
                 setProducts(response);
             });
@@ -20,7 +20,9 @@ export function Products() {
     return (
         <section className="products container">
 
-            <ProductCard />
+            {
+                products.map((product) =>  <ProductCard key={product.id} data={product}/>)
+            }
 
         </section>
     );
