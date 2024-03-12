@@ -3,27 +3,26 @@ import './Products.css';
 import { useState, useEffect } from 'react';
 import { fetchProducts } from '../../api/fetchProducts';
 import { ProductCard } from '../ProductCard/ProductCard';
+import { Loading } from '../Loading/Loading';
 
 export function Products() {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchProducts('PS4')
+        fetchProducts('vestido')
             .then((response) => {
                 setProducts(response);
+                setLoading(false);
             });
     }, []);
 
-    console.log(products);
-
     return (
-        <section className="products container">
 
-            {
-                products.map((product) =>  <ProductCard key={product.id} data={product}/>)
-            }
-
+        (loading ? <Loading /> : <section className="products container">
+            {products.map((product) => <ProductCard key={product.id} data={product} />)}
         </section>
+        )
     );
 }
